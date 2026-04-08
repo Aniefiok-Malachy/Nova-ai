@@ -3,15 +3,28 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { SplineSceneBasic } from "@/components/ui/demo";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import { Navbar } from "@/components/ui/navbar";
-import DemoOne from "@/components/ui/feature-demo";
-import { Pricing } from "@/components/ui/pricing";
 import { Footer } from "@/components/ui/footer-section";
+import { Home } from "@/pages/Home";
+import { About } from "@/pages/About";
+import { Contact } from "@/pages/Contact";
+import { Features } from "@/pages/Features";
+import { SignUp } from "@/pages/SignUp";
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
 
 export default function App() {
   return (
     <div className="min-h-screen bg-black text-white selection:bg-white/20 selection:text-white flex flex-col items-center relative overflow-x-hidden font-sans">
+      <ScrollToTop />
       {/* Premium Background Effects */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.05)_0%,transparent_70%)]" />
@@ -21,17 +34,13 @@ export default function App() {
       <Navbar />
       
       <main className="w-full flex flex-col items-center relative z-10">
-        <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 pt-32 pb-16 md:pt-40 md:pb-24">
-          <SplineSceneBasic />
-        </div>
-        
-        <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <DemoOne />
-        </div>
-
-        <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Pricing />
-        </div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/features" element={<Features />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/signup" element={<SignUp />} />
+        </Routes>
       </main>
 
       <Footer />

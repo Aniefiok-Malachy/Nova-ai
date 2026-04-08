@@ -2,7 +2,8 @@
 import React from 'react';
 import type { ComponentProps, ReactNode } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { FacebookIcon, FrameIcon, InstagramIcon, LinkedinIcon, YoutubeIcon, ArrowUpRight } from 'lucide-react';
+import { FacebookIcon, InstagramIcon, LinkedinIcon, YoutubeIcon, ArrowUpRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface FooterLink {
 	title: string;
@@ -19,27 +20,27 @@ const footerLinks: FooterSection[] = [
 	{
 		label: 'Product',
 		links: [
-			{ title: 'Features', href: '#features' },
-			{ title: 'Templates', href: '#templates' },
-			{ title: 'Integrations', href: '#integrations' },
-			{ title: 'Updates', href: '#updates' },
+			{ title: 'Features', href: '/features' },
+			{ title: 'Pricing', href: '/' },
+			{ title: 'Integrations', href: '#' },
+			{ title: 'Updates', href: '#' },
 		],
 	},
 	{
 		label: 'Company',
 		links: [
 			{ title: 'About', href: '/about' },
-			{ title: 'Careers', href: '/careers' },
-			{ title: 'Privacy Policy', href: '/privacy' },
-			{ title: 'Terms of Service', href: '/terms' },
+			{ title: 'Careers', href: '#' },
+			{ title: 'Privacy Policy', href: '#' },
+			{ title: 'Terms of Service', href: '#' },
 		],
 	},
 	{
 		label: 'Resources',
 		links: [
-			{ title: 'Docs', href: '/docs' },
-			{ title: 'Guides', href: '/guides' },
-			{ title: 'Support', href: '/support' },
+			{ title: 'Docs', href: '#' },
+			{ title: 'Guides', href: '#' },
+			{ title: 'Support', href: '#' },
 			{ title: 'Contact', href: '/contact' },
 		],
 	},
@@ -55,12 +56,12 @@ export function Footer() {
 			<div className="relative z-10 max-w-7xl mx-auto px-6 py-16 md:py-24">
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
 					<AnimatedContainer className="lg:col-span-2 space-y-8">
-						<div className="flex items-center gap-3">
-							<div className="w-10 h-10 rounded-xl bg-gradient-to-br from-white to-neutral-500 flex items-center justify-center shadow-lg shadow-white/10">
+						<Link to="/" className="flex items-center gap-3 group">
+							<div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-400 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/10 transition-transform group-hover:scale-110">
 								<div className="w-4 h-4 rounded-full bg-black" />
 							</div>
 							<span className="text-white font-bold text-2xl tracking-tight">Nova Ai</span>
-						</div>
+						</Link>
 						<p className="text-neutral-400 text-base max-w-sm leading-relaxed font-light">
 							Nova Ai is the next generation of artificial intelligence, empowering businesses with intelligent automation and predictive insights.
 						</p>
@@ -80,13 +81,13 @@ export function Footer() {
 								<ul className="mt-6 space-y-4">
 									{section.links.map((link) => (
 										<li key={link.title}>
-											<a
-												href={link.href}
+											<Link
+												to={link.href}
 												className="group inline-flex items-center text-neutral-400 hover:text-white transition-colors duration-300 text-sm font-light"
 											>
 												{link.title}
 												<ArrowUpRight className="size-3 ml-1 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-300" />
-											</a>
+											</Link>
 										</li>
 									))}
 								</ul>
